@@ -1,0 +1,78 @@
+#+TITLE: Ubuntu で freeglut を使う
+#+DATE: 2019/08/23
+
+環境は =Ubuntu 18.04.3 LTS x86_64= です．
+
+* 必要なパッケージを入れる
+
+  #+BEGIN_SRC shell
+$ sudo apt install freeglut3-dev
+  #+END_SRC
+
+* 試す
+
+  なんか適当に
+
+  #+BEGIN_SRC c
+#include <stdlib.h>
+#include <GL/glut.h>
+#include <GL/gl.h>
+#include <GL/glu.h>
+
+static void display(void)
+{
+    glClear(GL_COLOR_BUFFER_BIT);
+    glFlush();
+}
+
+int main(int argc, char **argv)
+{
+    glutInit(&argc, argv);
+    glutInitWindowSize(256,256);
+    glutCreateWindow("Hello");
+    glClearColor(1, 0, 0, 1);
+    glutDisplayFunc(display);
+    glutMainLoop();
+    return 0;
+}
+  #+END_SRC
+
+  256x256 のウィンドウを赤く塗りつぶすだけです．
+
+  で，コンパイル
+
+  #+BEGIN_SRC shell
+$ gcc main.c -lglut -lGLU -lGL -lm
+  #+END_SRC
+
+  できました．
+
+  [[img:Screenshot from 2019-08-23 09-45-03.png]]
+
+* 適当に Makefile にしておく
+
+  ライブラリが多くて毎回指定するのは面倒なので， Makefile 必須っぽいです．
+
+  #+BEGIN_SRC makefile
+LDFLAGS = -lglut -lGLU -GL -lm
+
+.PHONY: all
+all: main.o
+	$(CC) main.o $(LDFLAGS)
+  #+END_SRC
+
+* Man よこせ
+
+  #+BEGIN_SRC shell
+$ sudo apt install opengl-4-man-doc
+  #+END_SRC
+
+  で入るみたいです．でも見た感じ， =gl= で始まる関数しかないっぽい．
+  まあパッケージ名から想像がつくけど．
+
+  =glut= とか =glu= とかの man の入手の仕方を教えてください．
+
+* さいごに
+
+Windows でやる方がめんどくさいな，という印象ですね．まあ NuGet を使えば一発で入ることは入るんですが．
+でもあれはプロジェクトごとになるのであまり好きではない．
