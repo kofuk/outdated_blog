@@ -1,0 +1,11 @@
+function _create_dir_name() {
+    local _date=$(date +%Y%m%d)
+    seq -f %03.0f 1 inf | while read n; do
+        if ! [[ -e "$_date$n" ]]; then
+            echo "$_date$n"
+            return
+        fi
+    done
+}
+
+mkdir "$(_create_dir_name)" && cd $_ && emacs post.org
