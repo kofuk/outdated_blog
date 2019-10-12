@@ -19,4 +19,4 @@ $ sudo mount out.img system
 #+END_SRC
 
 =simg= ってのは何かというと, =img= の空の領域を圧縮してサイズを小さくしたものらしい
-([[https://www.talkwithdevices.com/archives/197][simg2img の simg とは何か？ (make_ext4fs コマンドなど)]]).
+([[https://www.talkwithdevices.com/archives/197][simg2img の simg とは何か？ (make\_ext4fs コマンドなど)]]).
