@@ -1,0 +1,20 @@
+#+TITLE: gsettings で変更したい設定メモ
+#+DATE: 2019/10/13
+
+* ウィンドウのボタンの配列を変更
+
+  Unity の頃の Ubuntu に慣れすぎて Windows なレイアウトに慣れないので, mac 風のレイアウトに変更.
+
+  ※ 決して Windows が嫌いだからとかそういう理由ではない.
+
+#+BEGIN_SRC shell
+$ gsettings set org.gnome.desktop.wm.preferences button-layout 'close,minimize,maximize:appmenu'
+#+END_SRC
+
+* CapsLock を潰す
+
+  鬱陶しいので. あとついでに Caps の位置に Ctrl があるのに慣れといた方がいいかな, と.
+
+#+BEGIN_SRC shell
+$ gsettings set org..gnome.desktop.input-sources xkb-options "['ctrl:nocaps']"
+#+END_SRC
