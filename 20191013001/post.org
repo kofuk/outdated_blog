@@ -16,5 +16,12 @@ $ gsettings set org.gnome.desktop.wm.preferences button-layout 'close,minimize,m
   鬱陶しいので. あとついでに Caps の位置に Ctrl があるのに慣れといた方がいいかな, と.
 
 #+BEGIN_SRC shell
-$ gsettings set org..gnome.desktop.input-sources xkb-options "['ctrl:nocaps']"
+$ gsettings set org.gnome.desktop.input-sources xkb-options "['ctrl:nocaps']"
+#+END_SRC
+
+  =gsettings= ではないけど，linux console で CapsLock を Ctrl として使うには，
+  =/etc/default/keyboard= に以下を追加する．
+
+#+BEGIN_SRC shell
+XKBOPTIONS="ctrl:nocaps"
 #+END_SRC
