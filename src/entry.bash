@@ -3,7 +3,7 @@ if [ ! -d "$cache_dir" ]; then
     mkdir -p "$cache_dir" || error_msg 'Internal server error'
 fi
 
-entry_name="$(echo "$REQUEST_URI" | sed -E 's@^/entry/([a-zA-Z0-9-]+)/$@\1@')"
+entry_name="$(echo "$PATH_INFO" | sed -E 's@^/entry/([a-zA-Z0-9-]+)/$@\1@')"
 
 src_file="$src_dir/../contents/$entry_name"
 

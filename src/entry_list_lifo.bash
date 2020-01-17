@@ -2,7 +2,7 @@ echo 'Status: 200 OK'
 echo 'Content-Type: application/json'
 echo
 
-page="$(echo "$REQUEST_URI" | sed -E 's@^/api/entry/list/lifo/([0-9]+)$@\1@')"
+page="$(echo "$PATH_INFO" | sed -E 's@^/api/entry/list/lifo/([0-9]+)$@\1@')"
 
 find ./contents -mindepth 1 -maxdepth 1 -exec git log --format='%h'$'\t''{}'$'\t''{}'$'\t''%ad' \
      --date='format:%Y%m%d%H%M'$'\t''%Y/%m/%d' \{\} \; | sort -rk2 | \
