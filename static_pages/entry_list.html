@@ -3,9 +3,22 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device_width">
-    <title>Title</title>
+    <title>記事一覧</title>
+    <script src="/assets/entry_list.js" async></script>
   </head>
   <body>
-    content
+    <div id="entry-list"></div>
+
+    <button id="prev-page">&lt;前のページ</a>
+    <button id="next-page">次のページ&gt;</a>
+
+    <template id="list-item-templ">
+      <a>
+        <div class="list-item">
+          <span class="list-item-title"></span>
+          (<span class="list-item-date"></span>)
+        </div>
+      </a>
+    </template>
   </body>
 </html>
