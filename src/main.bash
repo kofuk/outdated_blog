@@ -51,7 +51,7 @@ if [ "${REQUEST_METHOD:-}" != 'GET' ]; then
 fi
 
 if [ -z "${PATH_INFO:-}" ]; then
-    PATH_INFO=
+    PATH_INFO="$(echo "$REQUEST_URI" | sed -E 's@^(.*)\?.*$@\1@')"
 fi
 
 case "$PATH_INFO" in
