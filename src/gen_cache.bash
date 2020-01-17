@@ -6,6 +6,11 @@ if [ $# -lt 2 ]; then
     exit 1
 fi
 
+cache_dir="/tmp/blogcache-$(whoami)"
+if [ ! -d "$cache_dir" ]; then
+    mkdir -p "$cache_dir" || error_msg 'Internal server error'
+fi
+
 src_dir="$(cd "$(dirname "${BASH_SOURCE:-$0}")"; ls)"
 src_file="$src_dir/../$1"
 
