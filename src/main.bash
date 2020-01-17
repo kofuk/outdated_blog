@@ -50,11 +50,11 @@ if [ "${REQUEST_METHOD:-}" != 'GET' ]; then
     error_method_not_allowed
 fi
 
-if [ -z "${PATH_INFO:-}" ]; then
-    PATH_INFO=
+if [ -z "${REQUEST_URI:-}" ]; then
+    REQUEST_URI=
 fi
 
-case "$PATH_INFO" in
+case "$REQUEST_URI" in
     '/' | '')
         serve_file '../static_pages/index.html'
         ;;
@@ -65,7 +65,7 @@ case "$PATH_INFO" in
         serve_file '../static_pages/entry_list.html'
         ;;
     /entry/+([a-zA-Z0-9-]))
-        redirect "$PATH_INFO/"
+        redirect "$REQUEST_URI/"
         ;;
     /entry/+([a-zA-Z0-9-])/)
         source "$src_dir/entry.bash"
@@ -80,12 +80,12 @@ case "$PATH_INFO" in
         error_not_found
         ;;
     /assets/*)
-        serve_file "../$PATH_INFO"
+        serve_file "../$REQUEST_URI"
         ;;
     /favicon.ico)
         serve_file '../assets/favicon.ico'
         ;;
     *)
-        serve_file "misc/$PATH_INFO"
+        serve_file "misc/$REQUEST_URI"
         ;;
 esac
